@@ -4,7 +4,7 @@ $('table').each(function(i, table) {
 
         return function(i, e) {
             e.style['position'] = 'relative';
-            e.style['left'] = cache[i] || (cache[i] = e.clientWidth / 2) + 'px';
+            e.style['left'] = cache[i] || (cache[i] = (e.clientWidth || $(e).width()) / 2) + 'px';
         }
     })())
 })
