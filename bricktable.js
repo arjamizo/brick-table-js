@@ -1,11 +1,10 @@
-$('table td').parent().filter(':odd').find('td').each((function() {
-    var cache = [];
+$('table').each(function(i, table) {
+    $(table).find('td').parent().filter(':odd').find('td').each((function() {
+        var cache = [];
 
-    return function(i, e) {
-        var $e = $(e);
-        $e.css({
-            'position': 'relative',
-            left: cache[i] || (cache[i] = $e.width() / 2)
-        })
-    }
-})())
+        return function(i, e) {
+            e.style['position'] = 'relative';
+            e.style['left'] = cache[i] || (cache[i] = e.clientWidth / 2) + 'px';
+        }
+    })())
+})
