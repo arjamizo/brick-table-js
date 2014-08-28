@@ -95,7 +95,27 @@ But they always look the same. </p>
 <h1>
 <a name="how-can-i-use-it" class="anchor" href="#how-can-i-use-it"><span class="octicon octicon-link"></span></a>How can I use it?</h1>
 
-<p>Go to your <em>Web Developer Console</em> (probably <code>Crtl+Shift+J</code> or similar) and paste content of <code>brick-table.js</code> script. That's all. <em>No compilcated installation nor waiting hours for downloading.</em></p>
+<ol>
+<li>Go to your <em>Web Developer Console</em> (probably <code>Ctrl+Shift+J</code> or similar, e.g. <code>Ctrl+Shift+K</code> in Firefox) </li>
+<li>and paste content of <code>brick-table.js</code> (link <a href="https://github.com/arjamizo/brick-table-js/blob/master/bricktable.js">here</a>) script. </li>
+</ol><p>For your convenience I put this script here: </p>
+
+<pre><code>$('table').each(function(i, table) {
+    //this function is executed once per every table, so widths are calculated only once.
+    var rowsFunction = (function() {
+        var cache = [];
+        return function(i, e) {
+            e.style['position'] = 'relative';
+            e.style['left'] = cache[i] || (cache[i] = (e.clientWidth || $(e).width()) / 2) + 'px';
+        }
+    })()
+    $(table).find('td').parent().filter(':odd').find('td').each(function(i, e) {
+        setTimeout(rowsFunction, 100, i, e);
+    })
+})
+</code></pre>
+
+<p>That's all. <em>No compilcated installation nor waiting hours for downloading.</em></p>
 
 <h1>
 <a name="possible-usages" class="anchor" href="#possible-usages"><span class="octicon octicon-link"></span></a>Possible usages</h1>
